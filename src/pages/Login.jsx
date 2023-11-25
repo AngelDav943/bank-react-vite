@@ -23,6 +23,8 @@ export default function Login({ setToken }) {
             "account": username,
             "password": password,
         });
+
+        // Si devuelve token guardar datos
         if (loginData.token) setToken(loginData);
     }
 
