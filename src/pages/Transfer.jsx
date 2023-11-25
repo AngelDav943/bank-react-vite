@@ -19,9 +19,17 @@ export default function Home({ account }) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        const data = await login({
+        const data = await transfer({
             // Sin terminar
+            // amount, token, account_receive e id
+            "amount": amount,
+            "account_recive": target,
+
+            "id": account.user.account,
+            "token": account.token,
         });
+
+        console.log(data)
     }
 
     return(
