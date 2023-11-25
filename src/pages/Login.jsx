@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
+import './Login.css'
 
 async function login(data) {
     return fetch('https://bank.jedidiazfagundez.site/api/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(data)
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
     }).then(data => data.json())
 }
 
@@ -25,19 +26,14 @@ export default function Login({ setToken }) {
         if (loginData.token) setToken(loginData);
     }
 
-    return(
-        <form onSubmit={ handleSubmit }>
-        <label>
-            <p>Username</p>
-            <input type="text" onChange={e => setUser(e.target.value)}/>
-        </label>
-        <label>
-            <p>Password</p>
-            <input type="text" onChange={e => setPass(e.target.value)}/>
-        </label>
-        <div>
-            <button type="submit">Submit</button>
+    return (
+        <div className='formCenter'>
+            <form onSubmit={handleSubmit}>
+                <h1>Log In</h1>
+                <input placeholder='Account' type="text" onChange={e => setUser(e.target.value)} />
+                <input placeholder='Password' type="password" onChange={e => setPass(e.target.value)} />
+                <input type="submit" value="Submit" />
+            </form>
         </div>
-        </form>
     )
 }
