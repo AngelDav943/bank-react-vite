@@ -8,16 +8,14 @@ import Transfer from './pages/transfer.jsx'
 import './App.css'
 
 function App() {
-  const [token, setToken] = useState();
+  const [account, setAccount] = useState();
 
-  if (!token) return <Login setToken={ setToken } />
-  console.log(token)
+  if (!account) return <Login setAccount={ setAccount } />
 
   return (
     <Routes>
-      <Route path="/" element={ <Home account={token}/> }/>
-      <Route path="/Transfer" element={ <Transfer account={ token } /> }/>
-      <Route path="/Login" element={ <Login setToken={ setToken } /> }/>
+      <Route path="/" element={ <Home account={account}/> }/>
+      <Route path="/Transfer" element={ <Transfer setAccount={ setAccount } account={ account } /> }/>
     </Routes>
   )
 }

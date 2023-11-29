@@ -14,8 +14,8 @@ export default function({account})
             </nav>
 
             <div className="info">
-                <span>Welcome back, {account.user.name}</span>
-                <span>{account.user.account}</span>
+                <span>Welcome back, {account.name}</span>
+                <span>{account.account}</span>
             </div>
         </header>
     )

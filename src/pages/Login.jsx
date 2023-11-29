@@ -11,11 +11,11 @@ async function login(data) {
     }).then(data => data.json())
 }
 
-export default function Login({ setToken }) {
+export default function Login({ setAccount }) {
     const [username, setUser] = useState();
     const [password, setPass] = useState();
 
-    const [error, setError] = useState();
+    const [error, setError] = useState(null);
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -24,18 +24,29 @@ export default function Login({ setToken }) {
             "password": password,
         });
 
+        let newerror = null
+
         // Si devuelve token guardar datos
-        if (loginData.token) setToken(loginData);
+        if (loginData.token) {
+            setAccount({...loginData.user, "token":loginData.token});
+        } else {
+            newerror = loginData.msg
+        }
+
+        setError(newerror)
     }
 
     return (
-        <div className='formCenter'>
-            <form onSubmit={handleSubmit}>
+        <div className='formHorizontal'>
+            <div className="formVertical">
                 <h1>Log In</h1>
-                <input placeholder='Account' type="text" onChange={e => setUser(e.target.value)} />
-                <input placeholder='Password' type="password" onChange={e => setPass(e.target.value)} />
-                <input type="submit" value="Submit" />
-            </form>
+                <form onSubmit={handleSubmit}>
+                    <input error={String(error != null)} placeholder='Account' type="text" onChange={e => setUser(e.target.value)} />
+                    <input error={String(error != null)} placeholder='Password' type="password" onChange={e => setPass(e.target.value)} />
+                    <input type="submit" value="Submit" />
+                </form>
+                {error && <span className="error">{error}</span>}
+            </div>
         </div>
     )
 }
