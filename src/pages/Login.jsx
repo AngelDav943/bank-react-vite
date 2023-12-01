@@ -41,8 +41,8 @@ export default function Login({ setAccount }) {
             <div className="formVertical">
                 <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
-                    <input error={String(error != null)} placeholder='Account' type="text" onChange={e => setUser(e.target.value)} />
-                    <input error={String(error != null)} placeholder='Password' type="password" onChange={e => setPass(e.target.value)} />
+                    <input error={String(error != null)} placeholder='Account' type="text" onChange={({target: {value}}) => setUser(value)} />
+                    <input error={String(error != null)} placeholder='Password' type="password" onChange={({target: {value}}) => setPass(value)} />
                     <input type="submit" value="Submit" />
                 </form>
                 {error && <span className="error">{error}</span>}
