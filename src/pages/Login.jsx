@@ -27,7 +27,7 @@ export default function Login({ setAccount }) {
         let newerror = null
 
         // Si devuelve token guardar datos
-        if (loginData.token) {
+        if (loginData.token != undefined) {
             setAccount({...loginData.user, "token":loginData.token});
         } else {
             newerror = loginData.msg
